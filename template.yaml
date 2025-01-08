@@ -5,22 +5,21 @@ Resources:
   IndexFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./app/functions
+      CodeUri: app/
       Handler: index.lambdaHandler
       Role:
         Fn::GetAtt: [IndexFunctionRole, Arn]
       Runtime: nodejs20.x
-      PackageType: Zip
       Architectures:
         - arm64
-    Method:
+    Metadata:
       BuildMethod: esbuild
       BuildProperties:
         Minify: true
         Target: es2020
         Sourcemap: true
         EntryPoints:
-          - index.ts
+          - functions/index.ts
 
   IndexFunctionRole:
     Type: AWS::IAM::Role
