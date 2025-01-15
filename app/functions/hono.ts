@@ -6,8 +6,22 @@ const app = new Hono()
 app.get('/', (c) => {
   const query = c.req.query()
   return c.json({
+    message: 'root',
     query: query,
-    message: 'Hello, World!'
+  })
+})
+
+app.get('/hoge', (c) => {
+  return c.json({
+    message: 'hoge',
+  })
+})
+
+app.get('/foo/:bar', (c) => {
+  const bar = c.req.param('bar')
+  return c.json({
+    message: '/foo/:bar',
+    bar: bar,
   })
 })
 
