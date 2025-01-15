@@ -6,21 +6,21 @@ const app = new Hono()
 app.get('/', (c) => {
   const query = c.req.query()
   return c.json({
-    message: 'root',
+    route: 'root',
     query: query,
   })
 })
 
 app.get('/hoge', (c) => {
   return c.json({
-    message: 'hoge',
+    route: '/hoge',
   })
 })
 
 app.get('/foo/:bar', (c) => {
   const bar = c.req.param('bar')
   return c.json({
-    message: '/foo/:bar',
+    route: '/foo/:bar',
     bar: bar,
   })
 })
