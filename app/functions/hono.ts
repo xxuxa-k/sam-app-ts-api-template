@@ -4,7 +4,11 @@ import { handle } from 'hono/aws-lambda'
 const app = new Hono()
 
 app.get('/', (c) => {
-  return c.json({ message: 'Hello, World!' })
+  const query = c.req.query()
+  return c.json({
+    query: query,
+    message: 'Hello, World!'
+  })
 })
 
 export const lambdaHandler = handle(app)
